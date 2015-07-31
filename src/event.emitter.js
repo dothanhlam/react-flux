@@ -18,8 +18,8 @@ EventEmitter.prototype.remove = function(name, fn) {
 
 EventEmitter.prototype.emit = function(name) {
 
-    var _listeners = this.listeners[name] || [],
-        args =  Array.prototype.slice.call(arguments, 1);
+    var _listeners = this.listeners[name] || [];
+    var args =  Array.prototype.slice.call(arguments, 1);
     for(var i = 0, len = _listeners.length; i < len; ++i) {
         try {
             _listeners[i].apply(this, args);
