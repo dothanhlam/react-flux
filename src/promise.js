@@ -23,7 +23,9 @@ function Promise() {
         promise.resolve = promise.reject = function() { throw new Error("Promise already completed"); };
 
         var i = 0, cb;
-        while(cb = callbacks[i++]) { cb[type] && cb[type](result); }
+        while(cb = callbacks[i++]) {
+            cb[type] && cb[type](result);
+        }
 
         callbacks = null;
     }

@@ -60,5 +60,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['http-server']);
-
+    grunt.registerTask('build', ['clean', 'concat']);
 };

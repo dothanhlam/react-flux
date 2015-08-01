@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react-flux</title>
+    <script src="../src/dispatcher.js"></script>
+    <script src="../src/flux.action.js"></script>
+    <script src="../src/flux.store.js"></script>
+    <script src="../src/flux.js"></script>
+</head>
+<body>
+    <div>for testing</div>
+    <script type="text/javascript">
+
+        var action = new Action();
+        var todoStore = Flux.createStore({init: function() {
+            console.log("init function")
+        }});
+
+        todoStore.addListener("test", function(type, data) {console.log('data', data); this.emitChange()});
+        todoStore.addListener("test1", function() {console.log('this', 'test1'); this.emitChange()});
+        todoStore.addListener("test2", function() {console.log('this', 'test2'); this.emitChange()});
+        var emitHandler = function() {
+            console.log('store change')
+        };
+        todoStore.addChangeListener(emitHandler);
+        action.dispatch("test", {data: 'test'});
+        action.dispatch("test1", {data: 'test'});
+        todoStore.removeChangeListener(emitHandler);
+        action.dispatch("test2", {data: 'test'});
+    </script>
+</body>
+</html>
